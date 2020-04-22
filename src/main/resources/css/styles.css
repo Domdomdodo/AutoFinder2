@@ -1,0 +1,15 @@
+.jfx-button{
+    -jfx-button-type: RAISED;
+    -fx-background-color: #005792;
+    -fx-text-fill: #d9faff;
+}
+
+.jfx-decorator .resize-border {
+    -fx-decorator-color: #005792;
+    -fx-border-color: #00204a;;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-decorator-color: #005792;
+    -fx-background-color: #00204a;
+}
