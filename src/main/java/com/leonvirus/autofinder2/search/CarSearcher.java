@@ -11,10 +11,21 @@ public class CarSearcher {
     private static final String COMPANY_NAME = "Bockhoudt";
 
     public Elements search(Car car){
+        String searchUrl =buildSearchUrl(car);
         Document webPage = QueryHandler.getResultPage(buildSearchUrl(car));
         Elements elements = webPage.select("div.cldt-summary-full-item");
-        //return elements;
-
+        int retries = 3;
+        while (elements.size() < 1 && retries > 0){
+            try {
+                Thread.sleep(3000);
+            }
+            catch (InterruptedException e){
+                System.out.println(e.getMessage());
+            }
+            retries--;
+            webPage = QueryHandler.getResultPage(buildSearchUrl(car));
+            elements = webPage.select("div.cldt-summary-full-item");
+        }
         Elements candidates = new Elements();
         for (Element element: elements){
             String name = element.getElementsByAttributeValueMatching("data-test", "company-name").first().text();
